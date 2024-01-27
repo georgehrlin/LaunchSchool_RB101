@@ -105,10 +105,16 @@ prompt("Thank you for using the calculator. Good bye!")
 =begin Things to Think About
 1. I think a better way to validate that the user input is a number is to use
    Kernel.class(). In our case we would use the method to check whether the
-   return value is Integer or Float.
+   return value is Integer or Float: 
+   Kernel.class() == Integer || Kernel.class() == Float
 3. If we need to add some code afte the case statement within the method, to
    make sure that method still returns the strings, we can use the keyword
    return explicitly.
+3. Correction: We cannot use the return keyword, because once return is reached,
+   the method would exit, ignoring the lines of code that we intend to add.
+   According to the official answer, the way to do it is initialize a variable,
+   save the return value to the variable, then state the variable at the very
+   end after the added code.
 5. Although I am not entirely sure because I have not studied it, I believe
    Kernel is a module in which the class Object falls in (?). Therefore, Kernel
    is the module that encapsulates everything in Ruby. Kernel works as the
@@ -118,11 +124,3 @@ prompt("Thank you for using the calculator. Good bye!")
    module is automatically loaded by Object, giving us access to all of its
    methods.
 =end
-
-# ask the user for two numbers
-# ask the user for an operation to perform
-# perform the operation on the two numbers
-# output the result
-
-# answer = Kernel.gets()
-# Kernel.puts(answer)

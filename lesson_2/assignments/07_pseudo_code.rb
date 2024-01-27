@@ -1,5 +1,5 @@
 =begin Example
-Pseudo-code:
+PSEUDO-CODE:
 
 Given a collection of intgers.
 
@@ -13,8 +13,7 @@ Iterate through the collection one by one.
 
 After iterating through the collection, return the saved value.
 
-
-Formal pseudo-code:
+FORMAL PSEUDO-CODE:
 
 START
 
@@ -37,24 +36,20 @@ PRINT saved_number
 END
 =end
 
-
 # My atttempt program code
 def greatest_num(collection)
   i = 0
   saved = collection[i]
 
-  while (i + 1)  < collection.length
-    if saved >= collection[i + 1]
-      i += 1
-    else
-      saved = collection[i + 1]
-      i += 1
-    end
+  while (i + 1) < collection.length
+    saved = collection[i + 1] if saved < collection[i + 1]
+    i += 1
   end
-  
+
   saved
 end
 
+p greatest_num([356, 2, 4, 999])
 
 # Official program code
 def find_greatest(numbers)
@@ -71,15 +66,13 @@ def find_greatest(numbers)
   saved_number
 end
 
-
-=begin A method that returns the sum of two integers
-Pseudo-code:
+=begin A method that returns the sum of two integers.
+PSEUDO-CODE:
 
 Define a method that takes two parameters, a and b.
-  Return the result of a + b.
+  - Return the result of a + b.
 
-
-Formal pseudo-code:
+FORMAL PSEUDO-CODE:
 
 START
 
@@ -89,37 +82,34 @@ DEF method that takes two parameters (a, b)
 END
 =end
 
-
 def sum(a, b)
   a + b
 end
 
-
 =begin A method that takes an array of strings, and returns a string that is all
-those strings concatenated together
-Pseudo-code:
+those strings concatenated together.
+PSEUDO-CODE:
 
 Define a method that takes an array of strings as parameter.
-  Set a variable, i, that points to integer 0 and works as iterator.
+  Set a variable, i, that points to integer 0 and functions as iterator.
   Set a variable, result, that points to an empty string.
   Iterate through the array of strings one by one.
     - Reassign variable result by concatenating each string.
 
   After iterating through the array, return variable result.
 
-
-Formal pseudo-code:
+FORMAL PSEUDO-CODE:
 
 START
 
-DEF method that takes an array of strings as parameter
+DEF concatenate_strings that takes, arr, an array of strings as parameter
   SET i = 0
   SET result = ""
-  WHILE i < length of array of strings
-    result += array[i]
+  WHILE i < length of arr, array of strings
+    result += arr[i]
     i += 1
 
-  result
+  RETURN result
 
 END
 =end
@@ -137,13 +127,12 @@ end
 
 p concatenate_strings(["abc", "lol", "trolololol", "xDD"])
 
-
 =begin A method that takes an array of integers, and returns a new array with
 every other element from the original array, starting with the first element.
 For instance:
 every_other([1, 4, 7, 2, 5]) # => [1, 7, 5]
 
-Pseudo-code:
+PSEUDO-CODE:
 
 Define a method, every_other, that takes one array of integers as parameter.
   Set a variable, result, that points to an empty array.
@@ -154,17 +143,16 @@ Define a method, every_other, that takes one array of integers as parameter.
 
   After iterating through the array, return variable result.
 
+FORMAL PSEUDO-CODE:
 
-Formal psuedo-code:
-
-DEF every_other that takes an array of strings as parameter.
+DEF every_other that takes an array of strings, arr_str, as parameter.
   SET result = []
   SET i = 0
   WHILE i < length of array of strings - 2
     result << integer at index i of array
     i += 2
 
-  result
+  RETURN result
 
 END
 =end
@@ -182,16 +170,15 @@ end
 
 p every_other([1, 4, 7, 2, 5]) # => [1, 7, 5]
 
-
 =begin A method that determines the index of the 3rd occurence of a given
 character in a string. For instacne, if the given character is 'x' and the
 string is 'axbxcdxex', the method should return 6 (the index of the 3rd x). If
 the given character does not occur at leaast 3 times, return nil.
 
-Pseudo-code:
+PSEUDO-CODE:
 
-Define a method, third_occurence, that takes two strings as parameters--one string
-is target letter, one string is string of letters.
+Define a method, third_occurence, that takes two strings as parameters--one
+string is target letter, one string is a string of letters.
   Set a variable, occ_counter, that points to integer 0 and works as a counter.
   Set a variable, idx_tracker, that points to integer 0 and works as an index
   tracker.
@@ -210,7 +197,7 @@ is target letter, one string is string of letters.
     - Otherwise,
       - Return nil.
 
-Formal pseudo-code:
+FORMAL PSEUDO-CODE:
 
 START
 
@@ -220,15 +207,16 @@ DEF third_occurence that takes target and str as parameters.
   i = 0
 
   WHILE i < length of str
-    indx_tracker = i
-    occ_counter += 1 IF str[i] == target
+    IF str[i] == target
+      indx_tracker = i
+      occ_counter += 1
     BREAK IF occ_counter == 3
     i += 1
 
-  IF occ_counter >= 3
-    idx_tracker
+  IF occ_counter == 3
+    RETURN idx_tracker
   ELSE
-    nil
+    RETURN nil
 
 END
 =end
@@ -247,16 +235,15 @@ def third_occurence(target, str)
     i += 1
   end
 
-  if occ_counter >= 3
+  if occ_counter == 3
     idx_tracker
-  else
-    nil
+# else  # Commented out because redundant. Good to know!
+#   nil # Commented out because redundant
   end
 end
 
-p third_occurence('x', 'axbxcdxex')
-p third_occurence('x', 'axbxcd')
-
+p third_occurence('x', 'axbxcdxex') # Output: 6
+p third_occurence('x', 'axbxcd')    # Output: nil
 
 =begin A method that takes two arrays of numbers and returns the result of
 merging the arrays. The elements of the first array should become the
@@ -265,7 +252,7 @@ second array should become the elements at the odd indexes. For instance:
 merge([1, 2, 3], [4, 5, 6]) # => [1, 4, 2, 5, 3, 6]
 You may assume that both array arguments have the same number of elements.
 
-Pseudo-code:
+PSEUDO-CODE:
 
 Define a method, merge, that takes two arrays of integers as parameters.
   Set a variable, result, that points to an empty array.
@@ -277,8 +264,7 @@ Define a method, merge, that takes two arrays of integers as parameters.
 
   After iterating through first array, return result.
 
-
-Formal pseudo-code:
+FORMAL PSEUDO-CODE:
 
 START
 
@@ -288,8 +274,9 @@ DEF merge that takes two array of integers, arr1 and arr2, as parameters.
   WHILE i < length of first array
     result << arr1[i]
     result << arr2[i]
+    i += 1
 
-  result
+  RETURN result
 
 END
 =end

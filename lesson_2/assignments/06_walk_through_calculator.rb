@@ -11,8 +11,8 @@ Kernel.puts("Welcome to Calculator!")
 Kernel.puts ("What's the first number?")
 number1 = Kernel.gets().chomp()
 
-Kernel.puts(number1.inspect())
-Kernel.puts("the number is : " + number1 + "!")
+# Kernel.puts(number1.inspect())
+# Kernel.puts("the number is : " + number1 + "!")
 
 Kernel.puts ("What's the second number?")
 number2 = Kernel.gets().chomp()
@@ -32,10 +32,13 @@ end
 
 Kernel.puts("The result is #{result}.")
 
-# if expressions can return values in Ruby
+# Local variables initialized within an if statement can be accessed outside of
+# the if statement.
+
+# if statements can return values in Ruby, like below:
 var = if true
         "yes"
       else
         "no"
       end
-Kernel.puts(var)
+Kernel.puts(var) # Output: yes
