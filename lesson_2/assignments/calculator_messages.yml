@@ -6,7 +6,10 @@ en:
   second_number: "What's the second number?"
   must_choose: "Must choose 1, 2, 3, or 4"
   another_calculation: "Do you want to perform another calculation? (Y to calculate again)"
-  good_bye: "Thank you for using the calculator. Good bye!"
+  goodbye: "Thank you for using the calculator. Good bye!"
 zh_s:
-  welcome: "欢迎使用！"
+  welcome: "欢迎使用！请输入姓名："
   valid_name: "请输入正确姓名。"
+  first_number: "请输入首个数字："
+  invalid_number: "数字格式不符。"
+  second_number: "请输入第二个数字："
