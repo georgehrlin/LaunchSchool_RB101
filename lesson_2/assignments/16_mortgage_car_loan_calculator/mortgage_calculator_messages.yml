@@ -1,0 +1,10 @@
+en:
+  welcome: "Welcome to mortgage/car loan calculator! What is your name?"
+  get_loan_amount: "Enter total loan amount ($): "
+  invalid_loan_amount: "Loan amount must be a positive integer!"
+  get_annual_percentage_rate: "Enter annual percentage rate (%): "
+  invalid_annual_percentage_rate: "APR must be a positive number smaller than 100!"
+  get_loan_duration_year: "Enter total loan duration (in years): "
+  invalid_loan_duration_year: "Loan duration (years) must be a positive integer!"
+  restart?: "Would you like to restart another calculation? (Reply yes or no.)"
+  goodbye: "Thank you for using! Good bye!"
