@@ -101,6 +101,7 @@ loop do
    and loan duration of: #{loan_duration_year} years,
    your monthly payment is: $#{monthly_payment}.")
 
+  # Ask user whether to restart another calculation. Quit if not
   prompt(messages("restart?"))
   restart = gets.chomp
   break unless restart.downcase().include?("y")

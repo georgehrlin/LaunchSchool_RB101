@@ -8,3 +8,14 @@ en:
   invalid_loan_duration_year: "Loan duration (years) must be a positive integer!"
   restart?: "Would you like to restart another calculation? (Reply yes or no.)"
   goodbye: "Thank you for using! Good bye!"
+
+zh:
+  welcome: "欢迎使用借贷计算器。请问您的姓名是？"
+  get_loan_amount: "请输入贷款总数($)："
+  invalid_loan_amount: "贷款总数必须为正整数！"
+  get_annual_percentage_rate: "请输入年利率(%)："
+  invalid_annual_percentage_rate: "年利率必须为小于 100 的正数！"
+  get_loan_duration_year: "请输入以年为单位的借贷时限："
+  invalid_loan_duration_year: "借贷时限必须为正整数！"
+  restart?: "需要再进行一次运算吗？"
+  goodbye: "感谢使用。再见！"
