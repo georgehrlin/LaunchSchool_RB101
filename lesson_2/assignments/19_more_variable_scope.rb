@@ -22,5 +22,55 @@ def add_name(arr, name)
 end
 
 names = ['bob', 'kim']
-p add_name(names, 'jim')
+p add_name(names, 'jim').object_id
 p names
+p names.object_id
+
+=begin
+# Second Article: Ruby Object's Mutating and Non-Mutating Methods
+def fix(v)
+  puts "initial object #{v.object_id}"
+  v = v.upcase
+  puts "upcased object #{v.object_id}"
+  v.concat('!')
+end
+
+s = 'hello'
+puts "original object #{s.object_id}"
+t = fix(s)
+puts "final object #{t.object_id}"
+
+def fix(v)
+  v << 'xyz'
+  v = v.upcase
+  v.concat('!')
+end
+
+s = 'hello'
+t = fix(s)
+p s
+p t
+
+def fix(v)
+  v = v.upcase!
+  v.concat('!')
+end
+
+s = 'hello'
+p s.object_id
+
+t = fix(s)
+
+p s
+p t
+p s.object_id
+p t.object_id
+=end
+
+def print_id number
+  puts "In method object id = #{number.object_id}"
+end
+
+value = 33
+puts "Outside method object id = #{value.object_id}"
+print_id value
