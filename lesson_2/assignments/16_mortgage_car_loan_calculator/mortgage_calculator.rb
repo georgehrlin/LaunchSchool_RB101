@@ -1,12 +1,16 @@
-=begin PSEUDO-CODE
+=begin
+PSEUDO-CODE
 Get loan amount
-  - Make sure it's valid: a non-zero positive number; otherwise, ask again
-Get annual percentage rate
-  - Make sure it's valid: a non-zero positive number smaller than 1; otherwise,
-    ask again
-  - Convert into monthly interest rate
+  - Make sure it's valid: a non-zero positive int; otherwise, ask again
+  - Display loan amount to user
+Get annual percentage rate (apr)
+  - Make sure it's valid: a non-zero positive number (float or int) less than
+    100; otherwise, ask again
+  - Convert into monthly interest rate (mir)
+  - Display apr to user
+  - Display mir to user
 Get loan duration in years
-  - Make sure it's valid: a non-zero positive number; otherwise, ask again
+  - Make sure it's valid: a non-zero positive int; otherwise, ask again
   - Convert into loan duration in months
 
 Display monthly interest rate
@@ -16,100 +20,149 @@ months to calculate monthly payment
 Display monthly payment
 Ask if user wants to do another calculation
 =end
+
 require "yaml"
 MESSAGES = YAML.load_file("mortgage_calculator_messages.yml")
-LANGUAGE = "en" # zh for Chinese
+LANGUAGE = "en" # "zh" for Chinese
 
 def messages(key, language=LANGUAGE)
   MESSAGES[language][key]
 end
 
-def prompt(message)
-  puts "=> #{message}"
+def prompt(key)
+  puts "=> #{messages(key)}"
 end
 
-def positive_integer?(input)
+def positive_int_str?(input)
   (input.to_i > 0) && (input.to_i.to_s == input)
 end
 
-def valid_annual_percentage_rate?(apr)
-  (apr.to_f > 0) && (apr.to_f < 100) && (apr.to_f.to_s == apr)
+def valid_apr?(apr)
+  (apr.to_f > 0) && (apr.to_f < 100) &&
+    ((apr.to_f.to_s == apr) || (apr.to_i.to_s == apr))
 end
 
-# Welcome user and ask for name for greeting message
-prompt(messages("welcome"))
+def get_user_name
+  user_name = ""
+  loop do
+    prompt("get_user_name")
+    user_name = gets.chomp
+    if user_name.empty? || user_name == ' '
+      prompt("empty_user_name")
+    else
+      return user_name
+    end
+  end
+end
 
-user_name = gets.chomp
-prompt("Hi! #{user_name}!")
-
-# Main loop
-loop do
-  # Get loan amount from user and validate
+def get_loan_amount
   loan_amount = ""
   loop do
-    prompt(messages("get_loan_amount"))
+    prompt("get_loan_amount")
     loan_amount = gets.chomp
-    if positive_integer?(loan_amount)
-      break
+    if positive_int_str?(loan_amount)
+      return loan_amount
     else
-      prompt(messages("invalid_loan_amount"))
+      prompt("invalid_loan_amount")
     end
   end
+end
 
-  # Get annual percentage rate (APR) from user and validate
-  annual_percentage_rate = ""
+def get_apr
+  apr = ""
   loop do
-    prompt(messages("get_annual_percentage_rate"))
-    annual_percentage_rate = gets.chomp
-    if valid_annual_percentage_rate?(annual_percentage_rate)
-      break
+    prompt("get_annual_percentage_rate")
+    apr = gets.chomp
+    if valid_apr?(apr)
+      return apr
     else
-      prompt(messages("invalid_annual_percentage_rate"))
+      prompt("invalid_annual_percentage_rate")
     end
   end
+end
 
-  # Convert annual percentage rate to monthly interest rat (MIR) and print it
-  monthly_interest_rate = (annual_percentage_rate.to_f / 12).round(2)
-  prompt("Your monthly intrest rate is #{monthly_interest_rate}%.")
+def apr_to_mir(apr)
+  (apr.to_f / 12).round(4)
+end
 
-  # Calculate MIR in decimal for later calculation
-  mir_decimal = annual_percentage_rate.to_f / 100 / 12
+def mir_percent_to_decimal(mir_in_percent)
+  mir_in_percent / 100
+end
 
-  # Get loan duration in years from user and validate
+def get_loan_duration_year
   loan_duration_year = ""
   loop do
-    prompt(messages("get_loan_duration_year"))
+    prompt("get_loan_duration_year")
     loan_duration_year = gets.chomp
-    if positive_integer?(loan_duration_year)
-      break
+    if positive_int_str?(loan_duration_year)
+      return loan_duration_year
     else
-      prompt(messages("invalid_loan_duration_year"))
+      prompt("invalid_loan_duration_year")
     end
   end
+end
+
+def loan_duration_year_to_month(loan_duration_year)
+  loan_duration_year.to_i * 12
+end
+
+def monthly_payment(p, j, n)
+  (p.to_i * (j / (1 - ((1 + j)**(-n))))).round(2)
+end
+
+# Welcome user
+prompt("welcome")
+
+# Get name from user and print greeting message with name
+user_name = get_user_name
+puts "=> #{format(messages('greeting'), name: user_name)}"
+
+loop do # Main loop
+  # Get loan amount from user and print it
+  loan_amount = get_loan_amount
+  puts "=> #{format(messages('display_loan_amount'), loan: loan_amount)}"
+
+  # Get annual percentage rate (APR) from user and print it
+  apr_in_percent = get_apr
+  puts "=> #{format(messages('display_apr'), apr: apr_in_percent)}"
+
+  # Convert annual percentage rate to monthly interest rate (MIR) and print it
+  mir_in_percent = apr_to_mir(apr_in_percent)
+  puts "=> #{format(messages('display_mir'), mir: mir_in_percent)}"
+
+  # Convert MIR from percent to decimal for later calculation of monthly payment
+  mir_in_decimal = mir_percent_to_decimal(mir_in_percent)
+
+  # Get loan duration in years from user and print it
+  loan_duration_year = get_loan_duration_year
+  puts "=> #{format(messages('display_loan_duration_year'),
+                    loan_duration_year: loan_duration_year)}"
 
   # Convert loan duration in years to loan duration in months and print it
-  loan_duration_month = loan_duration_year.to_i * 12
-  prompt("Your loan duration in months is: #{loan_duration_month} months.")
+  loan_duration_month = loan_duration_year_to_month(loan_duration_year)
+  puts "=> #{format(messages('display_loan_duration_month'),
+                    loan_duration_month: loan_duration_month)}"
 
   # Calculate monthly payment and print it
-  monthly_payment = (loan_amount.to_i *
-                    (mir_decimal / (1 -
-                    (1 + mir_decimal)**(-loan_duration_month)))).round(2)
+  monthly_payment = monthly_payment(loan_amount, mir_in_decimal,
+                                    loan_duration_month)
 
-  prompt("Based on your loan amount of: $#{loan_amount},
-   annual percentage rate of: #{annual_percentage_rate}%,
-   and loan duration of: #{loan_duration_year} years,
-   your monthly payment is: $#{monthly_payment}.")
+  puts "=> #{format(messages('display_monthly_payment'),
+                    loan_amount: loan_amount,
+                    apr: apr_in_percent,
+                    loan_duration_year: loan_duration_year,
+                    monthly_payment: monthly_payment)}"
 
   # Ask user whether to restart another calculation. Quit if not
-  prompt(messages("restart?"))
+  prompt("restart?")
   restart = gets.chomp
   break unless restart.downcase().include?("y")
 end
 
-prompt(messages("goodbye"))
+prompt("goodbye")
 
-=begin Thins to Think About
+=begin
+Thins to Think About
 1. format is a method under the Kernel module. According to assignment 11, "When
    we write Ruby code that's not in a class, we are working within an object
    called main, which is an instance of Object. The Kernel module is
