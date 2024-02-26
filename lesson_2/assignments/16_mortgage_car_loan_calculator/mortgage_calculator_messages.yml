@@ -8,14 +8,14 @@ en:
   display_loan_amount: "Your total loan amount is $%{loan}."
   get_annual_percentage_rate: "Enter annual percentage rate (%): "
   invalid_annual_percentage_rate: "APR must be a positive number smaller than 100!"
-  display_apr: "Your annual percentage rate is %{apr} percent."
-  display_mir: "Your monthly interest rate is %{mir} percent."
+  display_apr: "Your annual percentage rate is %{apr}%%."
+  display_mir: "Your monthly interest rate is %{mir}%%."
   get_loan_duration_year: "Enter total loan duration (in years): "
   invalid_loan_duration_year: "Loan duration (years) must be a positive integer!"
   display_loan_duration_year: "Your loan duration is %{loan_duration_year} years."
   display_loan_duration_month: "Your loan duration is %{loan_duration_month} months."
   display_monthly_payment: "Based on your loan amount of: $%{loan_amount},\n
-      annual percentage rate of: %{apr} \%,\n
+      annual percentage rate of: %{apr}%%,\n
       and loan duration of: %{loan_duration_year} years,\n
       your monthly payment is: $%{monthly_payment}."
   restart?: "Would you like to restart another calculation? (Reply yes or no.)"
