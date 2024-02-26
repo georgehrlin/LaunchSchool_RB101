@@ -16,12 +16,21 @@ WIN_CONDITIONS = YAML.load_file("rps_bonus_features.yml")
 
 VALID_CHOICES = %w(rock paper scissors spock lizard)
 CHOICES_ACRONYMS = %w(r p sc sp l) # Bonus Features #2
+CHOICES_AND_ACRONYMS = {
+  'r' => 'rock',
+  'p' => 'paper',
+  'sc' => 'scissors',
+  'sp' => 'spock',
+  'l' => 'lizard'
+}
 
 def prompt(message)
   Kernel.puts("=> #{message}")
 end
 
-# Bonus Features #2
+=begin
+Bonus Features #2
+This was used first but results in Rubocop: Style/HashLikeCase
 def acronym_to_full_word(choice)
   case choice
   when 'r'
@@ -36,6 +45,7 @@ def acronym_to_full_word(choice)
     'spock'
   end
 end
+=end
 
 =begin
 def win?(first, second)
@@ -48,7 +58,7 @@ end
 # Bonus Features #1
 =begin
 # This is my own solution for #1 without method hunting.
-# I think it works:
+# I think it works
 def win?(first, second)
   i = 0
   won = false
@@ -97,7 +107,9 @@ loop do # Main loop
 
       # Bonus Features #2
       if CHOICES_ACRONYMS.include?(choice)
-        choice = acronym_to_full_word(choice)
+        # Part of my first attempt
+        # choice = acronym_to_full_word(choice)
+        choice = CHOICES_AND_ACRONYMS[choice]
       end
 
       if VALID_CHOICES.include?(choice)
