@@ -1,0 +1,9 @@
+choices:
+  scissors: {abbreviation: 'sc', beats: ["paper", "lizard"]}
+  paper: {abbreviation: 'p', beats: ["rock", "spock"]}
+  rock: {abbreviation: 'r', beats: ["lizard", "scissors"]}
+  lizard: {abbreviation: 'l', beats: ["spock", "paper"]}
+  spock: {abbreviation: 'sp', beats: ["scissors", "rock"]}
+
+messages:
+  welcome: "Welcome to Rock, Paper, Scissors, Spock, & Lizard!"
