@@ -1,28 +1,19 @@
-=begin
-PSEUDO-CODE
-Prompt welcome message
-Get user choice
-  - Make sure it's among VALID_CHOICES. Otherwise, ask again
-Create computer choice
-Decide winner based on user choice and computer choice
-Increment winning counter by 1 depending on the winner
-Repeat from get user choice
-Print final winner when winning counter reaches 3
-Ask user if he wants to play again
-=end
-
 require "yaml"
 YML = YAML.load_file("rps_bonus_features_refractored.yml")
 choices = YML["choices"]
 messages = YML["messages"]
-choices.values.each { |hash| p hash["abbreviation"]}
+
+p YML["choices"].fetch_values("abbreviation")
 
 def prompt(message)
   Kernel.puts("=> #{message}")
 end
 
-def check_abbreviation(input)
-  input == choices[]
+def check_abbreviation?(input)
+  abbreviation_is_present = false
+  until abbreviation_is_present
+    is_present == choices.values.each { |hash| input == hash["abbreviation"]}
+  end
 end
 
 def win?(first, second)
