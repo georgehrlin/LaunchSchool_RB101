@@ -107,7 +107,7 @@ My array looks like this now: pumpkins
 # in the output of line 95.
 
 
-# QUESTION 5 | INCOMPLETE
+# QUESTION 5 | WRONG
 =begin
 def tricky_method(a_string_param, an_array_param)
   a_string_param += "rutabaga"
@@ -122,18 +122,51 @@ puts "My string looks like this now: #{my_string}"
 puts "My array looks like this now: #{my_array}"
 =end
 
-def tricky_method(a_string_param, an_array_param)
+=begin
+def tricky_method_string(a_string_param)
   a_string_param += "rutabaga"
+end
+
+def tricky_method_array(an_array_param)
   an_array_param += ["rutabaga"]
 end
 
 my_string = "pumpkins"
 my_array = ["pumpkins"]
 
-my_string, my_array = tricky_method(my_string, my_array)
+p my_string
+p my_array
+
+my_string = tricky_method_string(my_string)
+my_array = tricky_method_array(my_array)
 
 p my_string
 p my_array
+=end
+
+# OFFICIAL ANSWER
+def not_so_tricky_method(a_string_param, an_array_param)
+  a_string_param += "rutabaga"
+  an_array_param += ["rutabaga"]
+
+  return a_string_param, an_array_param
+end
+
+my_string = "pumpkins"
+my_array = ["pumpkins"]
+
+my_string, my_array = not_so_tricky_method(my_string, my_array)
+
+p my_string
+p my_array
+
+# MY NOTE
+=begin
+In my defense, I actually had the same line of thought to have the method return
+two values and assign them accordingly to my_string and my _array. I just didn't
+know that I had to and how to write the return statement inside the method
+definition to return two values.
+=end
 
 
 # QUESTION 6 | CORRECT

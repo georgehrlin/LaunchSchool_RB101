@@ -160,3 +160,11 @@ would then their effects on this new array instead of on the original hash.
 =begin
 LMAO I was so wrong.
 =end
+
+
+# QUESTION 8
+# paper
+
+
+# QUESTION 9
+# Thre return value is "no".
