@@ -41,3 +41,72 @@ Oh and there are no spaces in the output too.
 The correct output is:
 {:a=>'hi there'}
 =end
+
+
+# QUESTION 3
+# A)
+=begin
+Code group A will print:
+one is: one
+two is: two
+three is: three
+=end
+
+# B)
+=begin
+Code group B will print:
+one is: one
+two is: two
+three is: three
+=end
+
+# C)
+=begin
+Code group C will print:
+one is: two
+two is: three
+three is: one
+=end
+
+
+# QUESTION 4 | CORRECT, but...
+def dot_separated_ip_address?(input_string)
+  dot_separated_words = input_string.split(".")
+
+  if dot_separated_words.size == 4
+    while dot_separated_words.size > 0
+      word = dot_separated_words[-1]
+      if (word.to_i in (0..255))
+        dot_separated_words.pop
+      else
+        break
+      end
+    end
+    return dot_separated_words.size == 0
+  else
+    return false
+  end
+end
+
+p dot_separated_ip_address?("123.123.123.123") # => true
+p dot_separated_ip_address?("1.2.3")           # => false
+p dot_separated_ip_address?("256.1.2.3")       # => false
+p dot_separated_ip_address?("1.2.3.256")       # => false
+
+# MY NOTE
+# My function works, but the official answer is way more succinct.
+# I don't have the method is_an_ip_number? so to check my method I am using
+# word.to_i in (0..255) instead. I know it doesn't work if word is not a number.
+
+# OFFICIAL ANSWER
+def dot_separated_ip_address?(input_string)
+  dot_separated_words = input_string.split(".")
+  return false unless dot_separated_words.size == 4
+
+  while dot_separated_words.size > 0 do
+    word = dot_separated_words.pop
+    return false unless (word.to_i in (0..255))
+  end
+
+  true
+end
