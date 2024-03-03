@@ -1,9 +1,33 @@
-choices:
+game_options:
   scissors: {abbreviation: 'sc', beats: ["paper", "lizard"]}
   paper: {abbreviation: 'p', beats: ["rock", "spock"]}
   rock: {abbreviation: 'r', beats: ["lizard", "scissors"]}
   lizard: {abbreviation: 'l', beats: ["spock", "paper"]}
   spock: {abbreviation: 'sp', beats: ["scissors", "rock"]}
 
-messages:
+game_messages:
   welcome: "Welcome to Rock, Paper, Scissors, Spock, & Lizard!"
+  rules: |
+    Remember:
+         Scissors cuts Paper,
+         Paper covers Rock,
+         Rock crushes Lizard,
+         Lizard poisons Spock,
+         Spock smashes Scissors,
+         Scissors decapitates Lizard,
+         Lizard eats Paper,
+         Paper disproves Spock,
+         Spock vaporizes Rock,
+         Rock crushes Scissors!
+  instructions: |
+    Abbreviations are allowed when entering your move:
+         r for rock,
+         p for paper,
+         sc for scissors,
+         sp for spock,
+         and l for lizard!
+  round_you_won: "You won this round!"
+  round_computer_won: "Computer won this round!"
+  round_tie: "It's a tie this round!"
+  current_socre: "Current score: Player %{player_score} Vs. Computer %{computer_score}"
+  choose_move: "Choose your move: %{moves}"
