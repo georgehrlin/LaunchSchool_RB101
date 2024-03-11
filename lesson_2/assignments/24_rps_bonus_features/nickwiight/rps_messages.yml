@@ -1,0 +1,63 @@
+en:
+  rock_inputs: 
+    - r
+    - rock
+  paper_inputs:
+    - p
+    - paper
+  scissors_inputs:
+    - s
+    - scissors
+  lizard_inputs:
+    - l
+    - lizard
+  spock_inputs:
+    - sp
+    - spock
+  welcome: 'Welcome to Rock, Paper, Scissors!'
+  extended?: "Would you like to play the extended edition: Rock, Paper, Scissors, Lizard, Spock?"
+  see_rules: "Would you like to see the rules?"
+  ready: 'Are you ready to play? Press ENTER to continue.'
+  rules: |+
+    ROCK PAPER SCISSORS
+     - Rock beats Scissors
+     - Paper beats Rock
+     - Scissors beats Paper
+
+    >> Moves can be chosen by name or by their abbreviation marked by ()
+    >> The score is tracked. Play until you are satisfied!
+
+  extended_rules: |+
+    ROCK PAPER SCISSORS LIZARD SPOCK
+     - Rock beats Scissors and Lizard
+     - Paper beats Rock and Spock
+     - Scissors beats Paper and Lizard
+     - Lizard beats Paper and Spock
+     - Spock beats Rock and Scissors
+
+    >> Moves can be chosen by name or by their abbreviation marked by ()
+    >> The score is tracked. Play until you are satisfied!
+
+  moves: (r)ock, (p)aper, (s)cissors
+  extended_moves: (r)ock, (p)aper, (s)cissors, (l)izard, (sp)ock
+  choose: 'Choose one: %s'
+  invalid: 'Not a valid choice. Try again.'
+  see_score: 'Do you want to see the score? (Y to see)'
+  player_score: 'Player: %s'
+  computer_score: 'Computer: %s'
+  choices: 'You chose %s, the computer chose %s.'
+  play_again: 'Do you want to play again? (Y to continue)'
+  tie: "It's a tie!"
+  win: "You won!"
+  lose: "The computer won!"
+  thanks: 'Thanks for playing Rock, Paper, Scissors.'
+  goodbye: 'Goodbye!'
+  confirm_character: 'y'
+  cancel_character: 'n'
+  continue: Press ENTER to continue
+  invalid_confirmation: Invalid input. Please enter either Y or N.
+  rounds: 'How many times should a side win to be the grand winner? Press ENTER for the default of 3.'
+  invalid_round: Invalid input. Please enter a positive integer or leave empty for 3.
+  grand_winner: "%s the grand winner!"
+es:
+# this is where the spanish version of the game would go  

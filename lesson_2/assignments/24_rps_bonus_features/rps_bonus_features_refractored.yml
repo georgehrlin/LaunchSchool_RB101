@@ -7,7 +7,7 @@ game_options:
 
 game_messages:
   welcome: "Welcome to Rock, Paper, Scissors, Spock, & Lizard!"
-  rules: |
+  rules_moves: |
     Remember:
          Scissors cuts Paper,
          Paper covers Rock,
@@ -26,8 +26,17 @@ game_messages:
          sc for scissors,
          sp for spock,
          and l for lizard!
+  rules_rounds: "Win 3 rounds to be the grand winner!"
+  round_number: "ROUND %{round_number}:"
   round_you_won: "You won this round!"
   round_computer_won: "Computer won this round!"
   round_tie: "It's a tie this round!"
-  current_socre: "Current score: Player %{player_score} Vs. Computer %{computer_score}"
-  choose_move: "Choose your move: %{moves}"
+  current_score: "Current score: Player %{player_score} Vs. Computer %{computer_score}"
+  choose_move: "Choose your move: %{moves} (or their abbreviations)."
+  invalid_move: "That is not a valid move or abbreviation!"
+  display_moves: "You chose %{player_move}. Computer chose %{computer_move}."
+  grand_winner_player: "You are the grand winner! Yay! :D"
+  grand_winner_computer: "Computer is the grand winner! Aww! D:"
+  play_again?: "Would you like to play again?"
+  play_again_invalid_input: "Please enter 'yes' or 'no'."
+  goodbye: "Thank you for playing! Goodbye!"
